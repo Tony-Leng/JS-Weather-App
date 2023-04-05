@@ -1,13 +1,25 @@
 console.log('connected!');
 
 const apiKey = "1535a41b848c877b2ff26535fb337d63";
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=tokyo";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-async function checkWeather() {
-  const response = await fetch(apiUrl + `&appid=${apiKey}`);
+const searchBox =document.querySelector(".search input");
+const searchBtn =document.querySelector(".search button");
+
+async function checkWeather(city) {
+  const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
   var data = await response.json();
 
   console.log(data);
+
+  document.querySelector(".city").innerHTML = data.name;
+  document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°Celcius";
+  document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+  document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
 }
+
+searchBtn.addEventListener("click", ()=>{
+  checkWeather(searchBox.value);
+})
 
 checkWeather();
