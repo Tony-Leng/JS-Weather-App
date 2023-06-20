@@ -73,11 +73,13 @@ body {
 @media only screen and (max-width: 376px) {
 
   .search input {
-    width: 200px;
+    width: 150px;
   }
 
   .search button {
-    width: 100px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
   }
 
 }
